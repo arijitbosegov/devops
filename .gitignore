@@ -1,0 +1,49 @@
+# --- Python related ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+
+# --- Virtual environments ---
+env/
+venv/
+ENV/
+env.bak/
+.venv/
+
+# --- IDE and Editor folders ---
+.vscode/
+.idea/
+
+# --- Logs and cache ---
+*.log
+*.out
+*.tmp
+*.pid
+
+# --- OS generated files ---
+.DS_Store
+Thumbs.db
+
+# --- Docker and build files ---
+*.tar
+*.gz
+*.zip
+*.bak
+
+# --- Large binaries / executables ---
+*.exe
+kubectl.exe
+
+# --- Test reports and coverage ---
+htmlcov/
+.coverage
+.tox/
+.pytest_cache/
+
+# --- Jenkins workspace / temp files ---
+workspace/
+target/
+build/
