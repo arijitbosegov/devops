@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}Log Workouts - ACEest Fitness{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2 class="page-title">📝 Log Your Workout Session</h2>
+    
+    <form method="POST" action="{{ url_for('add_workout') }}" class="workout-form">
+        <div class="form-group">
+            <label for="category">Select Category:</label>
+            <select name="category" id="category" required>
+                <option value="Warm-up">Warm-up</option>
+                <option value="Workout" selected>Workout</option>
+                <option value="Cool-down">Cool-down</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="workout">Exercise:</label>
+            <input type="text" id="workout" name="workout" placeholder="e.g., Running, Push-ups" required>
+        </div>
+
+        <div class="form-group">
+            <label for="duration">Duration (minutes):</label>
+            <input type="number" id="duration" name="duration" placeholder="30" min="1" required>
+        </div>
+
+        <div class="button-group">
+            <button type="submit" class="btn btn-success">✅ Add Session</button>
+        </div>
+    </form>
+</div>
+
+<div class="card">
+    <h2 class="page-title">📋 Your Recent Sessions</h2>
+    
+    {% if total_time > 0 %}
+        <div class="stats-banner">
+            <span class="stat">Total Time: <strong>{{ total_time }} minutes</strong></span>
+        </div>
+    {% endif %}
+
+    {% for category, sessions in workouts.items() %}
+        <div class="category-section">
+            <h3 class="category-title category-{{ category|lower|replace('-', '') }}">{{ category }}</h3>
+            
+            {% if sessions %}
+                <ul class="workout-list">
+                    {% for entry in sessions %}
+                    <li class="workout-item">
+                        <div class="workout-info">
+                            <span class="workout-name">{{ entry.exercise }}</span>
+                            <span class="workout-duration">⏱️ {{ entry.duration }} min</span>
+                            <span class="workout-time">📅 {{ entry.timestamp }}</span>
+                        </div>
+                        <form method="POST" action="{{ url_for('delete_workout', category=category, workout_id=entry.id) }}" style="display: inline;">
+                            <button type="submit" class="btn-delete" onclick="return confirm('Delete this workout?')">🗑️</button>
+                        </form>
+                    </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="no-sessions">No sessions recorded yet.</p>
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block footer_text %}Added session successfully! Keep up the great work! 💪{% endblock %}

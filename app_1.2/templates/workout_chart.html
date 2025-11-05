@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Workout Chart - ACEest Fitness{% endblock %}
+
+{% block content %}
+<div class="card chart-card">
+    <h2 class="page-title">🏋️ Personalized Workout Chart</h2>
+    <p class="subtitle">Follow this comprehensive workout plan for optimal results</p>
+
+    {% for category, exercises in workout_chart.items() %}
+        <div class="chart-section">
+            <h3 class="chart-category category-{{ category|lower|replace('-', '') }}">
+                {{ category }} Exercises
+            </h3>
+            <ul class="exercise-list">
+                {% for exercise in exercises %}
+                    <li class="exercise-item">
+                        <span class="bullet">●</span>
+                        <span class="exercise-name">{{ exercise }}</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endfor %}
+
+    <div class="workout-tip">
+        <h4>💡 Pro Tip:</h4>
+        <p>Always start with a proper warm-up to prevent injuries and end with a cool-down to help your body recover.</p>
+    </div>
+</div>
+{% endblock %}
