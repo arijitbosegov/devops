@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="card">
+    <h2>🏋️ ACEest Session Logger</h2>
+    <p class="muted">Track your progress with precision.</p>
+
+    <form action="{{ url_for('add_workout') }}" method="post" class="form-grid">
+      <label>Category</label>
+      <select name="category">
+        <option>Warm-up</option>
+        <option selected>Workout</option>
+        <option>Cool-down</option>
+      </select>
+
+      <label>Exercise Name</label>
+      <input name="exercise" placeholder="e.g., Jumping Jacks" required>
+
+      <label>Duration (min)</label>
+      <input name="duration" type="number" min="1" required>
+
+      <div></div>
+      <button class="btn primary" type="submit">✅ ADD SESSION</button>
+    </form>
+
+    <div class="actions">
+      <a class="btn secondary" href="{{ url_for('summary') }}">📋 VIEW SUMMARY</a>
+    </div>
+  </section>
+{% endblock %}

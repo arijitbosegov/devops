@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="card user-card">
+    <h2>📝 User Info</h2>
+    <form action="{{ url_for('save_user') }}" method="post" class="form-grid">
+      <label>Name</label>
+      <input name="name" value="{{ user_info.get('name','') if user_info else '' }}" required>
+      <label>Regn-ID</label>
+      <input name="regn_id" value="{{ user_info.get('regn_id','') if user_info else '' }}">
+      <label>Age</label>
+      <input name="age" type="number" value="{{ user_info.get('age','') if user_info else '' }}" required>
+      <label>Gender (M/F)</label>
+      <input name="gender" value="{{ user_info.get('gender','') if user_info else '' }}" required>
+      <label>Height (cm)</label>
+      <input name="height" type="number" step="0.1" value="{{ user_info.get('height','') if user_info else '' }}" required>
+      <label>Weight (kg)</label>
+      <input name="weight" type="number" step="0.1" value="{{ user_info.get('weight','') if user_info else '' }}" required>
+      <div></div>
+      <button class="btn primary" type="submit">Save Info</button>
+    </form>
+
+    {% if user_info %}
+    <div class="user-summary">
+      <p><strong>BMI:</strong> {{ "%.1f"|format(user_info.bmi) }} &nbsp; <strong>BMR:</strong> {{ user_info.bmr|round(0) }} kcal/day</p>
+      <a class="btn secondary" href="{{ url_for('export_pdf') }}">📄 Export Weekly PDF Report</a>
+    </div>
+    {% endif %}
+  </section>
+{% endblock %}
