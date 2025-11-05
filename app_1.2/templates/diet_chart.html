@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Diet Chart - ACEest Fitness{% endblock %}
+
+{% block content %}
+<div class="card diet-card">
+    <h2 class="page-title">🥗 Best Diet Chart for Fitness Goals</h2>
+    <p class="subtitle">Choose the right nutrition plan based on your fitness objectives</p>
+
+    {% for goal, foods in diet_plans.items() %}
+        <div class="diet-section">
+            <h3 class="diet-goal">
+                {% if goal == "Weight Loss" %}🔥{% elif goal == "Muscle Gain" %}💪{% else %}⚡{% endif %}
+                {{ goal }} Plan
+            </h3>
+            <ul class="diet-list">
+                {% for food in foods %}
+                    <li class="diet-item">
+                        <span class="bullet">●</span>
+                        <span class="food-name">{{ food }}</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endfor %}
+
+    <div class="diet-tips">
+        <h4>🍎 Nutrition Tips:</h4>
+        <ul class="tips-list">
+            <li>Stay hydrated - drink at least 8 glasses of water daily</li>
+            <li>Eat smaller meals throughout the day (5-6 meals)</li>
+            <li>Include protein in every meal for muscle recovery</li>
+            <li>Avoid processed foods and excessive sugar</li>
+            <li>Get adequate sleep (7-9 hours) for optimal results</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
