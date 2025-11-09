@@ -1,7 +1,7 @@
 ﻿pipeline {
   agent any
   environment {
-    DOCKERHUB = ""
+    DOCKERHUB = "loutuhal"
     APPNAME   = "flask-app"
   }
 
