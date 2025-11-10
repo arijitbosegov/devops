@@ -47,3 +47,21 @@ htmlcov/
 workspace/
 target/
 build/
+
+# Ignore Python virtual environments
+venv/
+*/venv/
+__pycache__/
+*.pyc
+
+# Ignore local environment files
+.env
+*.log
+
+# Ignore Docker artifacts
+*.pid
+*.sock
+
+# Ignore OS junk
+.DS_Store
+Thumbs.db
